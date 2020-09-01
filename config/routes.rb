@@ -5,6 +5,9 @@ Rails.application.routes.draw do
       namespace :merchants do
         get '/find', to: 'search#show'
       end
+      namespace :items do
+        get '/find', to: 'search#show'
+      end
       resources :merchants, except: [:new, :edit]
       resources :items, except: [:new, :edit]
     end

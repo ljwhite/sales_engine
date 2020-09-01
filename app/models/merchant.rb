@@ -13,8 +13,3 @@ class Merchant < ApplicationRecord
     end
   end
 end
-
-
-# Merchant.where(Merchant.arel_table[:created_at].matches(("%2012-03-27%").to_date))
-#
-# Merchant.where("to_char(created_at, 'YYYY-MM-DD') LIKE ?", "%2012-03-27%").first

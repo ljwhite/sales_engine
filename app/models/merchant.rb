@@ -12,4 +12,8 @@ class Merchant < ApplicationRecord
       where("to_char(updated_at, 'YYYY-MM-DD') LIKE ?", "%#{params[:updated_at]}%").first
     end
   end
+
+  def self.find_by_item(item)
+    find(item.merchant_id)
+  end
 end

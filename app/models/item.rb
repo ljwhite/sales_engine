@@ -3,11 +3,15 @@ class Item < ApplicationRecord
 
   def self.find_by_params(params)
     if params[:name]
-      Item.where(Item.arel_table[:name].matches("%#{params[:name]}%")).first
+      where(Item.arel_table[:name].matches("%#{params[:name]}%")).first
     elsif params[:created_at]
-      Item.where("to_char(created_at, 'YYYY-MM-DD') LIKE ?", "%#{params[:created_at]}%").first
+      where("to_char(created_at, 'YYYY-MM-DD') LIKE ?", "%#{params[:created_at]}%").first
     elsif params[:updated_at]
-      Item.where("to_char(updated_at, 'YYYY-MM-DD') LIKE ?", "%#{params[:updated_at]}%").first
+      where("to_char(updated_at, 'YYYY-MM-DD') LIKE ?", "%#{params[:updated_at]}%").first
     end
+  end
+
+  def self.find_all_items_by_merchant(merchant)
+    where(merchant_id: merchant.id)
   end
 end

@@ -79,6 +79,4 @@ namespace :seed_csv_data do
       )
     end
   end
-
-
 end

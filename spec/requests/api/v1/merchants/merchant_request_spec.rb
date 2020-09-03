@@ -19,11 +19,11 @@ describe "Merchant API" do
 
   it "can create a new merchant" do
     name = "Ians Oddities"
-    merchant_params = {name: name}
-    post "/api/v1/merchants", params: {merchant: merchant_params}
+    attrs = {name: name}
+    post "/api/v1/merchants", params: attrs
     merchant = Merchant.last
     expect(response).to be_successful
-    expect(merchant.name).to eq(merchant_params[:name])
+    expect(merchant.name).to eq(attrs[:name])
     expect(merchant.name).to eq("Ians Oddities")
   end
 
@@ -32,7 +32,7 @@ describe "Merchant API" do
     original_name = original_merchant.name
     new_name = "New Merchant Name"
 
-    put "/api/v1/merchants/#{original_merchant.id}", params: {merchant: {name: new_name }}
+    put "/api/v1/merchants/#{original_merchant.id}", params: {name: new_name }
     merchant = Merchant.last
     expect(response).to be_successful
     expect(merchant.name).to_not eq(original_name)

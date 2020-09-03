@@ -20,11 +20,11 @@ describe "Items API" do
   it "can create a new item" do
     name = "3D keychain"
     merchant = create(:merchant)
-    item_params = {name: name, description: "Better than 2D", unit_price: 5.50, merchant_id: merchant.id }
-    post "/api/v1/items", params: {item: item_params}
+    attrs = {name: name, description: "Better than 2D", unit_price: 5.50, merchant_id: merchant.id }
+    post "/api/v1/items", params: attrs
     item = Item.last
     expect(response).to be_successful
-    expect(item.name).to eq(item_params[:name])
+    expect(item.name).to eq(attrs[:name])
     expect(item.name).to eq("3D keychain")
   end
 
@@ -33,7 +33,7 @@ describe "Items API" do
     original_name = original_item.name
     new_name = "New Item Name"
 
-    put "/api/v1/items/#{original_item.id}", params: {item: {name: new_name }}
+    put "/api/v1/items/#{original_item.id}", params: {name: new_name }
     item = Item.last
     expect(response).to be_successful
     expect(item.name).to_not eq(original_name)

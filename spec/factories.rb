@@ -18,7 +18,7 @@ FactoryBot.define do
   factory :invoice do
     customer
     merchant
-    status { "Processing" }
+    status { "shipped" }
   end
 
   factory :invoice_item do
@@ -32,6 +32,6 @@ FactoryBot.define do
     invoice
     credit_card_number { 1234567812345678 }
     credit_card_expiration_date { Date.tomorrow }
-    result { "Approved" }
+    result { "success" }
   end
 end

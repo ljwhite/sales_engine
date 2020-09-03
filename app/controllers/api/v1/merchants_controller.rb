@@ -16,12 +16,13 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def destroy
-    render json: MerchantSerializer.new(Merchant.destroy(params[:id]))
+    Merchant.destroy(params[:id])
+    head :no_content
   end
 
   private
 
   def merchant_params
-    params.require(:merchant).permit(:name)
+    params.permit(:name)
   end
 end
